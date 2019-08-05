@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.1.3](https://github.com/ruimarinho/authy-client/tree/v1.1.3) (2019-08-05)
+[Full Changelog](https://github.com/ruimarinho/authy-client/compare/v1.1.2...v1.1.3)
+
+**Merged pull requests:**
+
+- Update yargs@13.3.0 [\#58](https://github.com/ruimarinho/authy-client/pull/58) ([rplopes](https://github.com/rplopes))
+
 ## [v1.1.2](https://github.com/ruimarinho/authy-client/tree/v1.1.2) (2018-11-28)
 [Full Changelog](https://github.com/ruimarinho/authy-client/compare/v1.1.1...v1.1.2)
 
