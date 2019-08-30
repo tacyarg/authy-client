@@ -549,8 +549,8 @@ export default class Client {
         .then(parseResponse)
         .tap(response => {
           assert(response, {
-            carrier: [is.required(), is.string()],
-            is_cellphone: [is.required(), is.boolean()],
+            carrier: is.nullOrString(),
+            is_cellphone: is.boolean(),
             is_ported: is.boolean(),
             message: [is.required(), is.string()]
           });
