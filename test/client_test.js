@@ -197,7 +197,6 @@ describe('Client', () => {
         e.should.be.instanceOf(AssertionFailedError);
 
         e.errors.message.show().assert.should.equal('HaveProperty');
-        e.errors.is_cellphone.show().assert.should.equal('HaveProperty');
         e.errors.message.show().assert.should.equal('HaveProperty');
       }
     });
@@ -212,7 +211,7 @@ describe('Client', () => {
       } catch (e) {
         e.should.be.instanceOf(AssertionFailedError);
 
-        e.errors.carrier[0].show().assert.should.equal('IsString');
+        e.errors.carrier[0].show().assert.should.equal('NullOrString');
         e.errors.is_cellphone[0].show().assert.should.equal('Boolean');
         e.errors.is_ported[0].show().assert.should.equal('Boolean');
         e.errors.message[0].show().assert.should.equal('IsString');
