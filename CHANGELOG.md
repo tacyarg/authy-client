@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.1.4](https://github.com/ruimarinho/authy-client/tree/v1.1.4) (2019-08-31)
+[Full Changelog](https://github.com/ruimarinho/authy-client/compare/v1.1.3...v1.1.4)
+
+**Merged pull requests:**
+
+- Update dependencies [\#61](https://github.com/ruimarinho/authy-client/pull/61) ([ruimarinho](https://github.com/ruimarinho))
+- Rename /delete to /remove as per updated Authy docs [\#60](https://github.com/ruimarinho/authy-client/pull/60) ([ruimarinho](https://github.com/ruimarinho))
+- Relax startPhoneVerification validations [\#59](https://github.com/ruimarinho/authy-client/pull/59) ([ruimarinho](https://github.com/ruimarinho))
+- add code\_length for startPhoneVerification [\#54](https://github.com/ruimarinho/authy-client/pull/54) ([var](https://github.com/var))
+
 ## [v1.1.3](https://github.com/ruimarinho/authy-client/tree/v1.1.3) (2019-08-05)
 [Full Changelog](https://github.com/ruimarinho/authy-client/compare/v1.1.2...v1.1.3)
 

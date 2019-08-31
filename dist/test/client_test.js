@@ -183,6 +183,28 @@ describe('Client', () => {
       }
     }));
 
+    it('should throw an error if `codeLength` is smaller than 4', _asyncToGenerator(function* () {
+      try {
+        yield client.startPhoneVerification({ countryCode: 'US', locale: 'es', phone: '7754615609', via: _enums.verificationVia.SMS }, { codeLength: 3 });
+
+        _should2.default.fail();
+      } catch (e) {
+        e.should.be.instanceOf(_errors.ValidationFailedError);
+        e.errors.codeLength[0].show().assert.should.equal('Range');
+      }
+    }));
+
+    it('should throw an error if `codeLength` is bigger than 10', _asyncToGenerator(function* () {
+      try {
+        yield client.startPhoneVerification({ countryCode: 'US', locale: 'es', phone: '7754615609', via: _enums.verificationVia.SMS }, { codeLength: 11 });
+
+        _should2.default.fail();
+      } catch (e) {
+        e.should.be.instanceOf(_errors.ValidationFailedError);
+        e.errors.codeLength[0].show().assert.should.equal('Range');
+      }
+    }));
+
     it('should throw an error if `response` is missing required fields', _asyncToGenerator(function* () {
       (0, _nock2.default)(/authy/).post(/\//).reply(200, { success: true });
 
@@ -194,7 +216,6 @@ describe('Client', () => {
         e.should.be.instanceOf(_errors.AssertionFailedError);
 
         e.errors.message.show().assert.should.equal('HaveProperty');
-        e.errors.is_cellphone.show().assert.should.equal('HaveProperty');
         e.errors.message.show().assert.should.equal('HaveProperty');
       }
     }));
@@ -209,7 +230,7 @@ describe('Client', () => {
       } catch (e) {
         e.should.be.instanceOf(_errors.AssertionFailedError);
 
-        e.errors.carrier[0].show().assert.should.equal('IsString');
+        e.errors.carrier[0].show().assert.should.equal('NullOrString');
         e.errors.is_cellphone[0].show().assert.should.equal('Boolean');
         e.errors.is_ported[0].show().assert.should.equal('Boolean');
         e.errors.message[0].show().assert.should.equal('IsString');

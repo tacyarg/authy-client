@@ -212,7 +212,7 @@ class Client {
         body: _lodash2.default.pickBy({
           user_ip: ip
         }, _lodash2.default.identity),
-        uri: _urlEscapeTag2.default`users/${authyId}/delete`
+        uri: _urlEscapeTag2.default`users/${authyId}/remove`
       }).bind(this).then(_responseParser2.default).asCallback(callback);
     });
   }
@@ -725,11 +725,13 @@ class Client {
             via = _source26$$.via;
       var _source26$$2 = _source26$[1];
       _source26$$2 = _source26$$2 === undefined ? {} : _source26$$2;
-      const locale = _source26$$2.locale,
+      const codeLength = _source26$$2.codeLength,
+            locale = _source26$$2.locale,
             callback = _source26[1];
 
 
-      (0, _validator.validate)({ countryCode: countryOrCallingCode, phone: phone, via: via }, {
+      (0, _validator.validate)({ codeLength: codeLength, countryCode: countryOrCallingCode, phone: phone, via: via }, {
+        codeLength: [_validator.Assert.range(4, 10)],
         countryCode: [_validator.Assert.required(), _validator.Assert.countryOrCallingCode()],
         locale: _validator.Assert.locale(),
         phone: [_validator.Assert.required(), _validator.Assert.phone(countryOrCallingCode)],
@@ -748,8 +750,8 @@ class Client {
         uri: _urlEscapeTag2.default`phones/verification/start`
       }).bind(this).then(_responseParser2.default).tap(response => {
         (0, _validator.assert)(response, {
-          carrier: [_validator.Assert.required(), _validator.Assert.string()],
-          is_cellphone: [_validator.Assert.required(), _validator.Assert.boolean()],
+          carrier: _validator.Assert.nullOrString(),
+          is_cellphone: _validator.Assert.boolean(),
           is_ported: _validator.Assert.boolean(),
           message: [_validator.Assert.required(), _validator.Assert.string()]
         });
