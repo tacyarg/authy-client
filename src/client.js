@@ -629,4 +629,41 @@ export default class Client {
         .asCallback(callback);
     });
   }
+
+  /**
+   * Retrieve a user's qr secret
+   */
+
+  generateUserOTPSecret(...args) {
+    return Promise.try(() => {
+      const [[{ authyId } = {}, { ip } = {}], callback] = source(...args);
+
+      log.debug({ authyId }, `Generating user ${authyId} OTP secret`);
+
+      validate({ authyId, ip }, {
+        authyId: [is.required(), is.authyId()],
+        ip: is.Ip()
+      });
+
+      return this.rpc.getAsync({
+        body: _.pickBy({
+          user_ip: ip
+        }, _.identity),
+        uri: esc`users/${authyId}/secret`
+      })
+        .bind(this)
+        .then(parseResponse)
+        .tap(response => {
+          assert(response, {
+            label: [is.required(), is.string()],
+            Issuer: [is.required(), is.string()],
+            qr_code: [is.required(), is.string()],
+            success: [is.required(), is.boolean()],
+          });
+        })
+        .asCallback(callback);
+    });
+  }
+
+
 }
